@@ -28,8 +28,15 @@ const App = () => {
   const history = useHistory(); // example from react-router
 
   const customAuthHandler = () => {
-    // Redirect to the /login page that has a CustomLoginComponent
-    history.push('/login');
+    oktaAuth.session.exists().then((exists) => {
+      if (exists) {
+        // logged in
+        oktaAuth.token.getWithRedirect();
+      } else {
+        // not logged in -- redirect to the /login page that has a CustomLoginComponent
+        history.push('/login');
+      }
+    });
   };
 
   return (
@@ -40,7 +47,7 @@ const App = () => {
       <Navbar />
       <Container text style={{ marginTop: '7em' }}>
         <Switch>
-          <Route path="/" exact component={Home} />
+          <SecureRoute path="/" exact component={Home} />
           <Route path="/login/callback" component={LoginCallback} />
           <Route path="/login" component={CustomLoginComponent} />
           <SecureRoute path="/messages" component={Messages} />

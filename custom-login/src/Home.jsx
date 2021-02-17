@@ -13,7 +13,8 @@
 import { useOktaAuth } from '@okta/okta-react';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button, Header } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react'; // Header
+import './Home.css';
 
 const Home = () => {
   const history = useHistory();
@@ -35,20 +36,20 @@ const Home = () => {
     history.push('/login');
   };
 
-  const resourceServerExamples = [
-    {
-      label: 'Node/Express Resource Server Example',
-      url: 'https://github.com/okta/samples-nodejs-express-4/tree/master/resource-server',
-    },
-    {
-      label: 'Java/Spring MVC Resource Server Example',
-      url: 'https://github.com/okta/samples-java-spring/tree/master/resource-server',
-    },
-    {
-      label: 'ASP.NET Core Resource Server Example',
-      url: 'https://github.com/okta/samples-aspnetcore/tree/master/samples-aspnetcore-3x/resource-server',
-    },
-  ];
+  // const resourceServerExamples = [
+  //   {
+  //     label: 'Node/Express Resource Server Example',
+  //     url: 'https://github.com/okta/samples-nodejs-express-4/tree/master/resource-server',
+  //   },
+  //   {
+  //     label: 'Java/Spring MVC Resource Server Example',
+  //     url: 'https://github.com/okta/samples-java-spring/tree/master/resource-server',
+  //   },
+  //   {
+  //     label: 'ASP.NET Core Resource Server Example',
+  //     url: 'https://github.com/okta/samples-aspnetcore/tree/master/samples-aspnetcore-3x/resource-server',
+  //   },
+  // ];
 
   if (authState.isPending) {
     return (
@@ -59,7 +60,7 @@ const Home = () => {
   return (
     <div>
       <div>
-        <Header as="h1">PKCE Flow w/ Custom Login</Header>
+        {/* <Header as="h1">PKCE Flow w/ Custom Login</Header> */}
 
         { authState.isAuthenticated && !userInfo
         && <div>Loading user information...</div>}
@@ -72,7 +73,7 @@ const Home = () => {
             {userInfo.name}
             !
           </p>
-          <p>
+          {/* <p>
             You have successfully authenticated against your Okta org, and have been redirected back to this application.  You now have an ID token and access token in local storage.
             Visit the
             {' '}
@@ -92,7 +93,7 @@ const Home = () => {
             <a href="/messages">My Messages</a>
             {' '}
             page to see the authentication process in action.
-          </p>
+          </p> */}
         </div>
         )}
 
